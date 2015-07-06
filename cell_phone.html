@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Martha Gitiha cell phone group plan bill calculator</title>
+<script type="application/javascript">
+
+//var members = { mwg : 0 , skw : 1 , mng : 2 ,  mkk : 3 , bnn : 4 } ;
+var members = { mwg : 0 , mng : 1 , bnn : 2 } ;
+	
+function calculate_individual_bill_cost ()
+{
+	var arr_txt_msg = new Array ();
+	var total_members = 3 ;   
+	
+	mwg_txt = parseFloat ( document.getElementById ( 'total_txt_mwg' ).value )  ;
+	mng_txt = parseFloat ( document.getElementById ( 'total_txt_mng' ).value ) ;
+	bnn_txt = parseFloat ( document.getElementById ( 'total_txt_bnn' ).value ) ;
+	
+	//store individual text message cost in an array
+	arr_txt_msg [ members.mwg ] = ( isNaN ( mwg_txt ) ? 0 : mwg_txt );
+	arr_txt_msg [ members.mng ] = ( isNaN ( mng_txt ) ? 0 : mng_txt );
+	arr_txt_msg [ members.bnn ] = ( isNaN ( bnn_txt ) ? 0 : bnn_txt );
+					  
+	//Sort the array 			  
+	arr_txt_msg.sort ( float_sort_asc ) ;
+
+	//get the lowest text message cost	
+	var min_txt_msg = document.getElementById ( 'Lowest_txt_msg' ).value  =  arr_txt_msg [0].toFixed (2) ;
+   
+   	//calculate the net cost for each individual
+   	document.getElementById ( 'net_txt_mwg' ).value = ( parseFloat ( document.getElementById ( 'total_txt_mwg' ).value - min_txt_msg )).toFixed (2);
+	document.getElementById ( 'net_txt_mng' ).value = ( parseFloat ( document.getElementById ( 'total_txt_mng' ).value - min_txt_msg )).toFixed (2) ;
+	document.getElementById ( 'net_txt_bnn' ).value = ( parseFloat ( document.getElementById ( 'total_txt_bnn' ).value - min_txt_msg )).toFixed (2) ;
+
+	
+	//Note: original cost of data packages is added
+	var wambu_net_txt = parseFloat ( document.getElementById ( 'net_txt_mwg' ).value ) + 30 ;
+	var mama_mel_net_txt = parseFloat ( document.getElementById ( 'net_txt_mng' ).value  ) + 20 + 31.37 ;
+	var bena_net_txt  = parseFloat ( document.getElementById ( 'net_txt_bnn' ).value  ) + 25 + 27.05 ;
+	
+	
+	//Calculate avarage for each person before Extra txt messages
+	var total_group_bill = parseFloat ( document.getElementById ( 'total_group_bill' ).value ) ;;
+	var total_group_txt_msg = parseFloat ( wambu_net_txt + mama_mel_net_txt + bena_net_txt ) ;
+	var average_bill_share =  parseFloat ( ( total_group_bill - total_group_txt_msg ) / total_members ).toFixed (2) ;
+
+	document.getElementById ( 'average_bill_share' ).value = average_bill_share ;
+	
+	//Calculate individual total share of the bill 
+	document.getElementById ( 'total_bill_mwg' ).value = ( parseFloat ( average_bill_share )  + wambu_net_txt ).toFixed (2) ;
+	document.getElementById ( 'total_bill_mng' ).value = ( parseFloat ( average_bill_share ) + mama_mel_net_txt ).toFixed (2) ;
+	document.getElementById ( 'total_bill_bnn' ).value = ( parseFloat ( average_bill_share ) + bena_net_txt ).toFixed (2) ;
+}
+	
+function float_sort_asc ( a , b ) 
+{
+  a = parseFloat(a);
+  b = parseFloat(b);
+  
+  return a < b ? - 1 : (a == b ? 0 : 1 );
+}
+
+
+</script>
+
+<style type="text/css">
+	.x {
+		padding: 2px;
+	}
+	
+	input {
+		width: 60px;
+		text-align:center;
+	}
+
+</style>
+
+</head>
+
+<body>
+	<fieldset style="border: 1px solid blue;">
+    <legend>Manage cell phone group plan bill:</legend></br></br></br>
+    	</br>
+        <div><b>Total Bill:</b>&nbsp;(6/05/2015 - 07/04/15)&nbsp;=&nbsp;
+            <input type="text" id="total_group_bill"  value="" >
+        </div><br/>
+         
+        
+        <div class="x"><b><u>Individual share of the bill</u></b></div><br/>
+        <div class="x"><b>Wambu:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Txt:&nbsp;&nbsp;
+            <input type="text" id="total_txt_mwg" value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Net Txt:&nbsp;
+            <input type="text" id="net_txt_mwg" value="" disabled >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Total Bill Share:</i>&nbsp;
+            <input type="text" id="total_bill_mwg" value="" disabled>&nbsp;&nbsp;
+        </div>
+        
+        <!--<div class="x"><b>Kinge:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Txt:&nbsp;
+            <input type="text" id="total_txt_skw" value="" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Net Txt:&nbsp;
+            <input type="text" id="net_txt_skw" value="" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Total Bill Share:</i>&nbsp;
+            <input type="text" id="total_bill_skw" value="" disabled>
+        </div>-->
+        
+		<div class="x"><b>Mama Mel:</b>&nbsp;&nbsp;&nbsp;&nbsp;Total Txt:&nbsp;
+            <input type="text" id="total_txt_mng" value="" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Net Txt:&nbsp;
+            <input type="text" id="net_txt_mng" value="" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Total Bill Share:</i>&nbsp;
+            <input type="text" id="total_bill_mng" value="" disabled>
+        </div>
+       
+        <!--<div class="x"><b>Monica:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Txt:&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="total_txt_mkk" value="">&nbsp;&nbsp;&nbsp;&nbsp;Net Txt:&nbsp;
+            <input type="text" id="net_txt_mkk" value="" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Total Bill Share:</i>&nbsp;
+            <input type="text" id="total_bill_mkk" value="" disabled>
+        </div>-->
+        
+         <div class="x"><b>Bena:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Txt:&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="total_txt_bnn" value="">&nbsp;&nbsp;&nbsp;&nbsp;Net Txt:&nbsp;
+            <input type="text" id="net_txt_bnn" value="" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Total Bill Share:</i>&nbsp;
+            <input type="text" id="total_bill_bnn" value="" disabled>
+        </div>
+     
+        <br/>
+        <div><b>Lowest Group Txt Msg</b>&nbsp;
+            <input type="text" id="Lowest_txt_msg" value="" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*Net Txt = Total Individual Txt - Lowest Txt Msg 
+        </div>
+        <br/>
+        
+        <div><b>Average total bill share:</b>&nbsp;&nbsp;&nbsp;
+            <input type="text" id="average_bill_share"  value="" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*Average Bill Share = ( Total bill - Total Group Net Txt) divide by # of inviduals in the plan
+        </div><br/>
+        
+        <div>
+            <button onClick="calculate_individual_bill_cost();" id="btn_calculate_individual_bill_cost">Calculate individual share of the total bill</button>
+        </div><br/>
+	</fieldset>  
+</body>
+</html>
