@@ -2,10 +2,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Martha Gitiha cell phone group plan bill calculator</title>
+<title>Mgitiha cell phone group plan bill calculator</title>
 <script type="application/javascript">
 
-//var members = { mwg : 0 , skw : 1 , mng : 2 ,  mkk : 3 , bnn : 4 } ;
 var members = { mwg : 0 , mng : 1 , bnn : 2 } ;
 	
 function calculate_individual_bill_cost ()
@@ -33,13 +32,11 @@ function calculate_individual_bill_cost ()
 	document.getElementById ( 'net_txt_mng' ).value = ( parseFloat ( document.getElementById ( 'total_txt_mng' ).value - min_txt_msg )).toFixed (2) ;
 	document.getElementById ( 'net_txt_bnn' ).value = ( parseFloat ( document.getElementById ( 'total_txt_bnn' ).value - min_txt_msg )).toFixed (2) ;
 
-	
-	//Note: original cost of data packages is added
+	//Note: original cost of data packages before the plan change is added plus the monthly phone payment where applicable
 	var wambu_net_txt = parseFloat ( document.getElementById ( 'net_txt_mwg' ).value ) + 30 ;
 	var mama_mel_net_txt = parseFloat ( document.getElementById ( 'net_txt_mng' ).value  ) + 20 + 31.37 ;
 	var bena_net_txt  = parseFloat ( document.getElementById ( 'net_txt_bnn' ).value  ) + 25 + 27.05 ;
-	
-	
+
 	//Calculate avarage for each person before Extra txt messages
 	var total_group_bill = parseFloat ( document.getElementById ( 'total_group_bill' ).value ) ;;
 	var total_group_txt_msg = parseFloat ( wambu_net_txt + mama_mel_net_txt + bena_net_txt ) ;
@@ -92,26 +89,14 @@ function float_sort_asc ( a , b )
             <input type="text" id="total_txt_mwg" value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Net Txt:&nbsp;
             <input type="text" id="net_txt_mwg" value="" disabled >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Total Bill Share:</i>&nbsp;
             <input type="text" id="total_bill_mwg" value="" disabled>&nbsp;&nbsp;
-        </div>
+        </div
         
-        <!--<div class="x"><b>Kinge:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Txt:&nbsp;
-            <input type="text" id="total_txt_skw" value="" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Net Txt:&nbsp;
-            <input type="text" id="net_txt_skw" value="" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Total Bill Share:</i>&nbsp;
-            <input type="text" id="total_bill_skw" value="" disabled>
-        </div>-->
-        
-		<div class="x"><b>Mama Mel:</b>&nbsp;&nbsp;&nbsp;&nbsp;Total Txt:&nbsp;
+	<div class="x"><b>Mama Mel:</b>&nbsp;&nbsp;&nbsp;&nbsp;Total Txt:&nbsp;
             <input type="text" id="total_txt_mng" value="" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Net Txt:&nbsp;
             <input type="text" id="net_txt_mng" value="" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Total Bill Share:</i>&nbsp;
             <input type="text" id="total_bill_mng" value="" disabled>
         </div>
-       
-        <!--<div class="x"><b>Monica:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Txt:&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" id="total_txt_mkk" value="">&nbsp;&nbsp;&nbsp;&nbsp;Net Txt:&nbsp;
-            <input type="text" id="net_txt_mkk" value="" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Total Bill Share:</i>&nbsp;
-            <input type="text" id="total_bill_mkk" value="" disabled>
-        </div>-->
-        
+  
          <div class="x"><b>Bena:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total Txt:&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="text" id="total_txt_bnn" value="">&nbsp;&nbsp;&nbsp;&nbsp;Net Txt:&nbsp;
             <input type="text" id="net_txt_bnn" value="" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Total Bill Share:</i>&nbsp;
