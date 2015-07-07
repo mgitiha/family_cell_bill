@@ -1,5 +1,14 @@
 var members = { mwg : 0 , mng : 1 , bnn : 2 } ;
 	
+function float_sort_asc ( a , b ) 
+{
+  a = parseFloat(a);
+  b = parseFloat(b);
+  
+  return a < b ? - 1 : (a == b ? 0 : 1 );
+}
+
+
 function calculate_individual_bill_cost ()
 {
 	var arr_txt_msg = new Array ();
@@ -31,7 +40,7 @@ function calculate_individual_bill_cost ()
 	var bena_net_txt  = parseFloat ( document.getElementById ( 'net_txt_bnn' ).value  ) + 25 + 27.05 ;
 
 	//Calculate avarage for each person before Extra txt messages
-	var total_group_bill = parseFloat ( document.getElementById ( 'total_group_bill' ).value ) ;;
+	var total_group_bill = parseFloat ( document.getElementById ( 'total_group_bill' ).value ) ;
 	var total_group_txt_msg = parseFloat ( wambu_net_txt + mama_mel_net_txt + bena_net_txt ) ;
 	var average_bill_share =  parseFloat ( ( total_group_bill - total_group_txt_msg ) / total_members ).toFixed (2) ;
 
@@ -43,11 +52,4 @@ function calculate_individual_bill_cost ()
 	document.getElementById ( 'total_bill_bnn' ).value = ( parseFloat ( average_bill_share ) + bena_net_txt ).toFixed (2) ;
 }
 	
-function float_sort_asc ( a , b ) 
-{
-  a = parseFloat(a);
-  b = parseFloat(b);
-  
-  return a < b ? - 1 : (a == b ? 0 : 1 );
-}
 
