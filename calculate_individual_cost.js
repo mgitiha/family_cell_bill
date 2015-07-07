@@ -20,8 +20,8 @@ function calculate_individual_bill_cost ()
 	//get the lowest text message cost	
 	var min_txt_msg = document.getElementById ( 'Lowest_txt_msg' ).value  =  arr_txt_msg [0].toFixed (2) ;
    
-   //calculate the net cost for each individual
-  document.getElementById ( 'net_txt_mwg' ).value = ( parseFloat ( document.getElementById ( 'total_txt_mwg' ).value - min_txt_msg )).toFixed (2);
+   	//calculate the net cost for each individual
+  	document.getElementById ( 'net_txt_mwg' ).value = ( parseFloat ( document.getElementById ( 'total_txt_mwg' ).value - min_txt_msg )).toFixed (2);
 	document.getElementById ( 'net_txt_mng' ).value = ( parseFloat ( document.getElementById ( 'total_txt_mng' ).value - min_txt_msg )).toFixed (2) ;
 	document.getElementById ( 'net_txt_bnn' ).value = ( parseFloat ( document.getElementById ( 'total_txt_bnn' ).value - min_txt_msg )).toFixed (2) ;
 
